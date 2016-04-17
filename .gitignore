@@ -2,6 +2,9 @@
 bin/
 /db
 .eclipse
+.idea/
+.idea_modules/
+.sbtserver/
 /lib/
 /logs/
 /modules
