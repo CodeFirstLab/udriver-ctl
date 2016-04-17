@@ -1,4 +1,4 @@
-name := """ubersdq"""
+name := """udriver-ctl"""
 
 version := "1.0-SNAPSHOT"
 

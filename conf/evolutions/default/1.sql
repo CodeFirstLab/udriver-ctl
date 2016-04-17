@@ -14,7 +14,7 @@ CREATE TABLE expenses (
     expense_type varchar(50) NOT NULL,
     expense_date date NOT NULL,
     description varchar(255) NOT NULL,
-    quantity numeric NOT NULL,
+    quantity numeric,
     price numeric NOT NULL,
     image_id integer REFERENCES images,
     creation_date timestamp NOT NULL DEFAULT now(),

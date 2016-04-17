@@ -1,6 +1,6 @@
 package daos
 
-import java.sql.{Date, Types}
+import java.sql.{Date, Timestamp, Types}
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import javax.inject._
@@ -16,7 +16,7 @@ import scala.collection.mutable.ListBuffer
 @Singleton
 class ExpensesDAO @Inject() (db: Database) {
 
-  private val INSERT = "INSERT INTO expenses (expense_type, expense_date, description, quantity, price, image_id) VALUES (?, ?, ?, ?, ?)"
+  private val INSERT = "INSERT INTO expenses (expense_type, expense_date, description, quantity, price, image_id) VALUES (?, ?, ?, ?, ?, ?)"
   private val FIND_BY_ID = "SELECT id, expense_type, expense_date, description, quantity, price, image_id, creation_date FROM expenses WHERE id = ?"
   private val FIND_BY_DATE = "SELECT id, expense_type, expense_date, description, quantity, price, image_id, creation_date FROM expenses WHERE expense_date BETWEEN ? AND ?"
 
@@ -63,8 +63,8 @@ class ExpensesDAO @Inject() (db: Database) {
     db.withConnection { conn =>
       val stmt = conn.prepareStatement(FIND_BY_DATE)
       val dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
-      stmt.setDate(1, Date.valueOf(dtf.format(startDate)))
-      stmt.setDate(2, Date.valueOf(dtf.format(endDate)))
+      stmt.setTimestamp(1, Timestamp.valueOf(dtf.format(startDate)))
+      stmt.setTimestamp(2, Timestamp.valueOf(dtf.format(endDate)))
       val rs = stmt.executeQuery
 
       val expenses = ListBuffer[Expense]()

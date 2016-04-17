@@ -1,16 +1,16 @@
-/.idea
-/.idea_modules
-/.classpath
-/.project
-/.settings
-/RUNNING_PID
+.idea
+.idea_modules
+.sbtserver
+.classpath
+.project
+.settings
+RUNNING_PID
 
 logs
 project/project
 project/target
+project/.sbtserver*
 target
 tmp
 dist
 .cache
-
-.sbtserver*
