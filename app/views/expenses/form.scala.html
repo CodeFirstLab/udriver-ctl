@@ -1,1 +1,66 @@
 @()
+
+@main("Save Expense Form") {
+    @helper.form(action = routes.ExpenseController.save, 'enctype -> "multipart/form-data") {
+
+        <p>
+            <label for="expenseType">Tipo de Gasto:</label>
+            <select name="expenseType" id="expenseType">
+                <option value="Gas()">Combustible</option>
+                <option value="Repair()">Reparacion</option>
+                <option value="Upgrade()">Upgrade</option>
+                <option value="CarWash()">Lavado</option>
+                <option value="Insurance()">Seguro</option>
+                <option value="Maintenance()">Mantenimiento</option>
+                <option value="Miscellaneous()">Miscelaneo</option>
+            </select>
+        </p>
+
+        <p>
+            <label for="expenseDate">Fecha del Gasto:</label>
+            <input type="datetime" name="expenseDate" id="expenseDate" />
+        </p>
+
+        <p>
+            <label for="description">Descripcion:</label>
+            <input type="text" multiple="multiple" name="description" id="description" />
+        </p>
+
+        <p>
+            <input type="number"  name="quantity" id="quantity" />
+        </p>
+
+        <p>
+            <input type="number" name="price" id="price" />
+        </p>
+
+        <p>
+            <input type="file" name="picture" id="picture" />
+        </p>
+
+        <p>
+            <img width="200" height="200" id="preview" />
+        </p>
+
+        <p>
+            <input type="submit">
+        </p>
+
+
+        <script type="application/javascript">
+            $(function() {
+                document.getElementById("picture").onchange = function () {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        // get loaded data and render thumbnail.
+                        document.getElementById("preview").src = e.target.result;
+                    };
+
+                    // read the image file as a data URL.
+                    reader.readAsDataURL(this.files[0]);
+                };
+            });
+        </script>
+    }
+}

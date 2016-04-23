@@ -12,6 +12,7 @@ libraryDependencies ++= Seq(
   cache,
   ws,
   "org.postgresql" % "postgresql" % "9.3-1104-jdbc41",
+  "org.webjars" % "jquery" % "2.2.3",
   "org.scalatestplus.play" %% "scalatestplus-play" % "1.5.0-RC1" % Test
 )
 

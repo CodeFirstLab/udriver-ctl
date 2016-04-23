@@ -24,7 +24,7 @@ class ImagesDAOSpec extends PlaySpec with OneAppPerTest {
 
     "find image by id" in {
       val imagesDAO = application.injector.instanceOf[ImagesDAO]
-      val image = imagesDAO.findById(1L)
+      val image = imagesDAO.findById(6L)
       if (image.nonEmpty) {
         image.get.binaryData.createNewFile
       }
