@@ -22,13 +22,8 @@ class ExpenseController @Inject() (expensesDAO: ExpensesDAO, imagesDAO: ImagesDA
 
   def save = Action(parse.multipartFormData) { request =>
     request.body.file("picture").map { picture =>
-      import java.io.File
-      val filename = picture.filename
-      val contentType = picture.contentType
-      val tmpFile = new File(filename)
-      imagesDAO.save(Image(None, filename, picture.ref.moveTo(tmpFile)))
-      tmpFile.delete
 
+      imagesDAO.save(Image(None, picture.filename, picture.ref.file))
 
       Ok("Expense registered OK")
     }.getOrElse {
